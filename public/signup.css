@@ -1,0 +1,80 @@
+.formStyle{
+    color:White;
+    border:2px solid black;
+    background-image: url('pexels-pixabay-326279.jpg');
+    background-size: 100%;
+    padding:10px 0px;
+    /* background-image:linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("https://i.imgur.com/xnh5x47.jpg"); */
+}
+
+
+.imgs{    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:50px;
+}
+
+.inputs{
+    display:inline-block;
+    width:100%;
+    margin-bottom:50px;
+    padding:0px 50px 0px 50px;
+    /* border:2px solid black; */
+}
+.inner{
+    display:flex;
+    /* border:2px solid green; */
+}
+.labels{
+    flex:1;
+    display: flex;
+    /* border:1px solid red; */
+
+}
+.right{
+    /* border:1px solid blue; */
+    flex:1;
+   
+}
+input
+{
+    border:2px solid black;
+}
+.left{
+    /* border: 1px solid navy; */
+    display:flex;
+    justify-content:flex-start;
+    font-size: large;
+    font-weight: 700;
+    padding-left: 10%;
+    border-right:1px solid grey;
+}
+
+  
+    button {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
+    button {
+       margin: 10px;
+       padding: 15px 45px;
+       text-align: center;
+       text-transform: uppercase;
+       transition: 0.5s;
+       background-size: 200% auto;
+       color: white;            
+       box-shadow: 0 0 20px #eee;
+       border-radius: 10px;
+       display: block;
+     }
+
+     button:hover {
+       background-position: right center; /* change the direction of the change here */
+       color: #fff;
+       text-decoration: none;
+     }
+    
+.buttons{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3%;
+}

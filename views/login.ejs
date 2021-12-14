@@ -11,67 +11,26 @@
 </head>
 <body>
     <%- include('navbar') %>
-    <div class='formStyle'>
-        <div class="lfull">
+    <div class="login">
+        <div class="login2">
             <div class="imgs">
-                <img src="/loginimage.png" alt="" style="border-radius:50% 50%;" width="10%" >
+                <img src="/loginimage.png" alt="" style="border-radius:50% 50%;margin-top: 10px;" width="40%">
             </div>
-    
-        <form action="/dashboard" method="post" class="forms" autocomplete="off">
-            <div class="inputs">
-                <div class="inner">
-                    <div class="labels">
-                        <label for="name" class="right left">First Name </label>
-                        <input type="text" id="name" name="fname" class="right">
-                    </div>
-                    <div class="labels">
-                        <label for="lname" class="right left">Last Name </label>
-                        <input type="text" id="lname" name="lname" class="right">
-                    </div>
+            <form action="/dashboard" method="post" class="forms">
+                <label for="name">Name :</label>
+                <input type="text" id="name" class="name">
+                <label for="rollNo">Roll No :</label>
+                <input type="text" id="rollNo" class="rollNo">
+                <label for="department">Department :</label>
+                <input type="text" id="department" class="department">
+                <div class="buttons">
+                    <button>Submit</button>
                 </div>
-            </div>
-        <div class="inputs">
-            <div class="inner">
-                <div class="labels">
-                    <label for="email" class="right left">Email </label>
-                    <input type="email" id="email" name="email" class="right">
+                <div style="margin-top:10px;">
+                    Not a user <a href="/register" style="text-decoration: none; color:black ;">Register</a>
                 </div>
-                <div class="labels">
-                    <label for="dob" class="right left">Date of Birth</label>
-                    <input type="date" name="dob" id="dob" min="2003-10-10" class="right">
-                </div>
-            </div>
+            </form>
         </div>
-        <div class="inputs">
-            <div class="inner">
-                <div class="labels">
-                    <label for="rollNo" class="right left">ROLL NO </label>
-                    <input type="number" id="rollNo" name="rollNo" class="right" min="0">
-                </div>
-                <div class="labels">
-                    <label for="mobileNo" class="right left">Mobile Number</label>
-                    <input type="text" id="mobileNo" name="mobileNo" class="right" minlength="10" maxlength="10">
-                </div>
-            </div>
-        </div>
-        <div class="inputs">
-            <div class="inner">
-                <div class="labels">
-                    <label for="Department" class="right left">Department </label>
-                    <input type="text" id="Department" name="Department" class="right" min="0">
-                </div>
-                <div class="labels">
-                    <label for="mobileNo" class="right left">Mobile Number</label>
-                    <input type="text" id="mobileNo" name="mobileNo" class="right" minlength="10" maxlength="10">
-                </div>
-            </div>
-        </div>
-        <div class="buttons">
-        <button>Submit</button>
-        </div>
-        </form>
-
     </div>
-    </div>   
 </body>
 </html>
