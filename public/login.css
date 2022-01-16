@@ -1,19 +1,19 @@
 .login{
     display:flex;
     justify-content: center;
-    /* background-image: url('loginfood.jpg'); */
-    background-color: red; /* For browsers that do not support gradients */
-    background-image: linear-gradient(to bottom right,#2193b0 , #6dd5ed); 
+    background-image: url('loginpagebackground.jpg'); /* For browsers that do not support gradients */
+    /* background-image: linear-gradient(to bottom right,#2193b0 , #6dd5ed);  */
     background-size:100% 100%;
     background-repeat: no-repeat;
 }
 .login2{
     display:flex;
+    color:white;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    background-color: red;
-    background-image: linear-gradient(to bottom right,#2193b0 , #6dd5ed); 
+    /* background-color: red; */
+    background-image: linear-gradient(to bottom right,#2193b0 , #023e8a); 
     margin:5% 0;
     border-radius: 10px;
     flex-basis: 25%;
@@ -21,9 +21,12 @@
 .forms{
     margin:10px;
 }
-input,label{
+input,label,select,option{
     width: 100%;
     padding:4px;
+}
+input{
+    text-transform: uppercase;
 }
 .imgs{
     display:flex;
@@ -33,14 +36,14 @@ input,label{
 
 button {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
 button {
-       margin: 10px;
+       margin: 40px 0px;
        padding: 15px 45px;
        text-align: center;
        text-transform: uppercase;
        transition: 0.5s;
        background-size: 200% auto;
        color: white;            
-       box-shadow: 0 0 20px #eee;
+       box-shadow: 0 0 5px #eee;
        border-radius: 10px;
        display: block;
      }
