@@ -21,6 +21,7 @@
                 <th>Father Name</th>
                 <th>Roll No</th>
                 <th>Department</th>
+                <th>Delete Account</th>
             </tr>
             <% for (let detail of details) { %>
             <tr>
@@ -28,6 +29,11 @@
                 <td><%= detail.father_name  %> </td>
                 <td><%= detail.rollNo  %> </td>
                 <td><%= detail.department%> </td>
+                <td>
+                    <form action="/dashboard/<%=detail.id%>?_method=DELETE" method="post" >
+                    <button>Delete</button>
+                    </form>
+                </td>
             </tr>
             <% } %> 
         </table>
