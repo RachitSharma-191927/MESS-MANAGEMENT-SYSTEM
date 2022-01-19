@@ -15,11 +15,16 @@
     margin-bottom:50px;
 }
 
+#log_img{
+    width:12%;
+    margin-top:20px;
+}
+
 .inputs{
     display:inline-block;
     width:100%;
     margin-bottom:50px;
-    padding:0px 50px 0px 50px;
+    padding:0px 50px;
     /* border:2px solid black; */
 }
 .inner{
@@ -52,11 +57,10 @@ input,select,option
     padding-left: 10%;
     border-right:1px solid grey;
 }
-
-  
-    .button {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
-    .button {
-       margin: 10px;
+#submit {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
+    
+#submit {
+       margin: 20px 10px;
        padding: 15px 35px;
        text-align: center;
        text-transform: uppercase;
@@ -68,7 +72,8 @@ input,select,option
        display: block;
      }
 
-     .button:hover {
+     
+     #submit:hover {
        background-position: right center; /* change the direction of the change here */
        color: #fff;
        text-decoration: none;
@@ -100,6 +105,19 @@ input,select,option
     justify-content: flex-start;
 }
 
+.error{
+    display:flex;
+    height:80vh;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+    color:black;
+    background-color:cornflowerblue;
+    margin:0px;
+    font-size:100px;
+    font-weight: 900;
+}
+
 /* Nav bar heading media query */
 @media  screen and (max-width:1175px) {
     .nav_name{
@@ -122,3 +140,64 @@ input,select,option
         justify-content: center;
     }
 }
+
+@media screen and (max-width:850px)
+{
+    .inputs{
+        padding:0px 0px;
+        margin-bottom: 0px;
+    }
+    .imgs
+    {
+        width:100%;
+    }
+    .inner{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .labels{
+        margin-bottom:20px;
+        display:flex;
+        flex:1;
+    }
+    label{
+        position:relative;
+        left:10%;
+    }
+    input,option,select{
+        position: relative;
+        right:10%;
+    }
+    .left{
+        border:none;
+    }
+    #log_img{
+        width:20%;
+        margin-top:20px;
+    }
+}
+
+@media screen and (max-width:550px)
+{
+    .labels{
+        display:flex;
+        flex-direction: column;
+        margin: 15px;
+    }
+    label{
+        margin-bottom:10px;
+        position: relative;
+        right:40%;
+    }
+    input,select,option{
+        width:70%;
+        position:relative;
+        left:20%;
+    }
+    #log_img{
+        margin-top:20px;
+        width:30%;
+    }
+}
+

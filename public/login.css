@@ -16,7 +16,8 @@
     background-image: linear-gradient(to bottom right,#2193b0 , #023e8a); 
     margin:5% 0;
     border-radius: 10px;
-    flex-basis: 25%;
+    flex-basis: 30%;
+    font-size:large;
 }
 .forms{
     margin:10px;
@@ -25,19 +26,22 @@ input,label,select,option{
     width: 100%;
     padding:4px;
 }
-input{
+input,option,select{
     text-transform: uppercase;
+    border-radius:5px;
 }
 .imgs{
     display:flex;
     align-items: center;
     justify-content: center;
+    margin-top:50px;
 }
 
-button {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
-button {
-       margin: 40px 0px;
-       padding: 15px 45px;
+#submits {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
+    
+#submits {
+       margin: 40px;
+       padding: 15px 35px;
        text-align: center;
        text-transform: uppercase;
        transition: 0.5s;
@@ -48,7 +52,8 @@ button {
        display: block;
      }
 
-button:hover {
+     
+     #submits:hover {
        background-position: right center; /* change the direction of the change here */
        color: #fff;
        text-decoration: none;
@@ -58,3 +63,90 @@ button:hover {
         justify-content: center;
         align-items: center;
     }
+
+    @media  screen and (max-width:1100px) {
+       
+        .login2{
+            flex-basis:40%;
+        }    
+    }
+    @media  screen and (max-width:900px) {
+       
+    .login2{
+        flex-basis:45%;
+    }    
+} 
+
+@media  screen and (max-width:700px) {
+       
+    .login2{
+        flex-basis:60%;
+    }    
+}
+
+@media  screen and (max-width:500px) {
+       
+    .login2{
+        flex-basis:80%;
+    }    
+} 
+
+@media screen and (max-width:850px)
+{
+    .inputs{
+        padding:0px 0px;
+        margin-bottom: 0px;
+    }
+    .imgs
+    {
+        width:100%;
+    }
+    .inner{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .labels{
+        margin-bottom:20px;
+        display:flex;
+        flex:1;
+    }
+    label{
+        position:relative;
+        left:0%;
+    }
+    input,option,select{
+        position: relative;
+        right:0%;
+    }
+    .left{
+        border:none;
+    }
+    #log_img{
+        width:20%;
+        margin-top:20px;
+    }
+}
+
+@media screen and (max-width:550px)
+{
+    .labels{
+        display:flex;
+        flex-direction: column;
+        margin: 15px;
+    }
+    label{
+        margin-bottom:10px;
+        position: relative;
+        right:0%;
+    }
+    input,select,option{
+        width:100%;
+        position:relative;
+        left:0%;
+    }
+    #log_img{
+        margin-top:20px;
+        width:30%;
+    }
+}

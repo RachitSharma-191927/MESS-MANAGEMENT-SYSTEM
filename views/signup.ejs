@@ -15,7 +15,7 @@
    <div class='formStyle'>
     <div class="lful required="true"l">
         <div class="imgs">
-            <img src="/loginimage.png" alt="" style="border-radius:50% 50%;" width="10%" >
+            <img src="/loginimage.png" alt="" style="border-radius:50% 50%;" id="log_img" >
         </div>
         <% if(a===true){ %>
             <div class="alert alert-danger error" role="alert">
@@ -26,67 +26,68 @@
         <div class="inputs">
             <div class="inner">
                 <div class="labels">
-                    <label for="name" class="right left">Your Name </label>
-                    <input type="text" id="name" name="name" class="right" required="true">
+                    <label for="name" class="right left" class="labelss">Your Name </label>
+                    <input type="text" id="name" name="name" class="right" required="true" class="inputss">
                 </div>
                 <div class="labels">
-                    <label for="lname" class="right left">Father Name </label>
-                    <input type="text" id="lname" name="father_name" class="right" required="true">
+                    <label for="lname" class="right left" class="labelss">Father Name </label>
+                    <input type="text" id="lname" name="father_name" class="right" required="true" class="inputss">
                 </div>
             </div>
         </div>
     <div class="inputs">
         <div class="inner">
             <div class="labels">
-                <label for="email" class="right left">Email </label>
-                <input type="email" id="email" name="email" class="right" required="true">
+                <label for="email" class="right left" class="labelss">Email </label>
+                <input type="email" id="email" name="email" class="right" required="true" class="inputss">
             </div>
             <div class="labels">
-                <label for="dob" class="right left">Date of Birth</label>
-                <input type="date" name="dateOfbirth" id="dob"  class="right" required="true">
-            </div>
-        </div>
-    </div>
-    <div class="inputs">
-        <div class="inner">
-            <div class="labels">
-                <label for="rollNo" class="right left">ROLL NO </label>
-                <input type="number" id="rollNo" name="rollNo" class="right" min="0" required="true">
-            </div>
-            <div class="labels">
-                <label for="mobileNo" class="right left">Mobile Number</label>
-                <input type="text" id="mobileNo" name="mobileNo" class="right" minlength="10" maxlength="10" required="true">
+                <label for="dob" class="right left" class="labelss">Date of Birth</label>
+                <input type="date" name="dateOfbirth" id="dob"  class="right" required="true" class="inputss">
             </div>
         </div>
     </div>
     <div class="inputs">
         <div class="inner">
             <div class="labels">
-                <label for="Department" class="right left">Department </label>
-                <select name="department" id="department" class="right" required="true">
-                    <option value="B.TECH">B.TECH</option>
-                    <option value="B.SC">B.SC</option>
-                    <option value="B.VOC">B.VOC</option>
-                    <option value="M.TECH">M.TECH</option>
-                    <option value="M.SC">M.SC</option>
-                    <option value="MA">MA</option>
+                <label for="rollNo" class="right left" class="labelss">ROLL NO </label>
+                <input type="number" id="rollNo" name="rollNo" class="right" min="0" required="true" class="inputss">
+            </div>
+            <div class="labels">
+                <label for="mobileNo" class="right left" class="labelss">Mobile Number</label>
+                <input type="text" id="mobileNo" name="mobileNo" class="right" minlength="10" maxlength="10" required="true" class="inputss">
+            </div>
+        </div>
+    </div>
+    <div class="inputs">
+        <div class="inner">
+            <div class="labels">
+                <label for="Department" class="right left" class="labelss">Department </label>
+                <select name="department" id="department" class="right" required="true" class="selectss">
+                    <option value="B.TECH" class="optionss">B.TECH</option>
+                    <option value="B.SC" class="optionss">B.SC</option>
+                    <option value="B.VOC" class="optionss">B.VOC</option>
+                    <option value="M.TECH" class="optionss">M.TECH</option>
+                    <option value="M.SC" class="optionss">M.SC</option>
+                    <option value="MA" class="optionss">MA</option>
                 </select>
             </div>
             <div class="labels">
-                <label for="Designation" class="right left">Designation </label>
-                <select name="designation" id="designation" class="right" required="true">
-                    <option value="TEACHER">TEACHER</option>
-                    <option value="STUDENT">STUDENT</option>
+                <label for="Designation" class="right left" class="labelss">Designation </label>
+                <select name="designation" id="designation" class="right" required="true" class="selectss">
+                    <option value="TEACHER" class="optionss">TEACHER</option>
+                    <option value="STUDENT" class="optionss">STUDENT</option>
                 </select>
             </div>
         </div>
     </div>
     <div class="buttons">
-    <button>Submit</button>
+    <button id="submit">Submit</button>
     </div>
     </form>
 
     </div>
     </div>
+    <%- include('footer') %>
 </body>
 </html>
