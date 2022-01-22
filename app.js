@@ -21,6 +21,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(methodOverride('_method'))
 app.use(express.static('public'))
+app.use(morgan('tiny'));
 
 
 
@@ -92,14 +93,11 @@ app.get('/dashboard/:id', wrapAsync(async (req,res,next)=>{
         logout=false;
         return next(new AppError("Wrong User Id",404))
     })
-    console.log(details)
-    console.log(details.designation==="ADMIN")
     if(details.designation=="ADMIN")
     {
         login=true;
         var details;
         details=await register.find({designation:{$ne:'ADMIN'}})
-        console.log(details);
         res.render('admin.ejs',{details,login,id})
     }
     else
@@ -126,7 +124,6 @@ app.get('/dashboard/:id/edit',wrapAsync(async (req,res)=>{
 
 app.post('/user', wrapAsync(async (req,res)=>{
     details= await register.find(req.body)
-    console.log(details)
     a=false;
     if(details.length===0)
     {
@@ -139,7 +136,6 @@ app.post('/user', wrapAsync(async (req,res)=>{
     id=details[0]._id
     res.redirect(`/dashboard/${id}`)
     }
-    throw new Error("Wrong Details",401)
 }))
 
 
@@ -153,7 +149,6 @@ app.post('/dashboard', wrapAsync(async (req,res)=>{
     }).required()
 
     const result=dashboardSchema.validate(req.body);
-    console.log(result);
 
     details= await register.find({rollNo:req.body.rollNo,department:req.body.department,name:req.body.name,email:req.body.email})
     a=false;
@@ -170,7 +165,6 @@ app.post('/dashboard', wrapAsync(async (req,res)=>{
         console.log(v);
         })
         details= await register.find({rollNo:req.body.rollNo})
-        console.log(details);
         var rollNo=req.body.rollNo;
         login=true
         id=details[0]._id

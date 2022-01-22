@@ -1,3 +1,4 @@
+
 .formStyle{
     color:White;
     border:2px solid black;
@@ -201,3 +202,8 @@ input,select,option
     }
 }
 
+.dash{
+    background-image: linear-gradient(to bottom right,#2193b0 , #023e8a);
+    margin:0px 1px 0px 0px;
+    padding:0px; 
+}

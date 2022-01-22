@@ -37,6 +37,10 @@ input,option,select{
     margin-top:50px;
 }
 
+#user_img{
+    width: 25%;
+}
+
 #submits {background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)}
     
 #submits {
@@ -68,6 +72,10 @@ input,option,select{
        
         .login2{
             flex-basis:40%;
+
+        }
+        #user_img{
+            width:35%;
         }    
     }
     @media  screen and (max-width:900px) {
@@ -81,14 +89,20 @@ input,option,select{
        
     .login2{
         flex-basis:60%;
-    }    
+    }
+    #user_img{
+        width:40%;
+    }     
 }
 
 @media  screen and (max-width:500px) {
        
     .login2{
         flex-basis:80%;
-    }    
+    }  
+    #user_img{
+        width:50%;
+    }       
 } 
 
 @media screen and (max-width:850px)
