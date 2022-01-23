@@ -14,27 +14,65 @@
 </head>
 <body>
   <%- include('navbar') %>
-<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active" data-bs-interval="2500">
-      <img src="https://images.unsplash.com/photo-1556543365-e08680c86612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2Nob29sJTIwY2FudGVlbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="..." height="600vh">
+    <div class="row" style="margin:0px">
+      <div class="col-lg-2 col-md-3 col-sm-6 col-12  seca">
+        <div class="home_head"><center>Important Notices</center></div>
+        <div class="links_head">
+          <marquee direction="up" height="150px" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
+          <ul>
+            <li><a href="http://www.cuh.ac.in/admin/uploads/pdf/0Final%20hostel%20Manual.pdf">Fees Structure 2022</a></li>
+            <li><a href="http://www.cuh.ac.in/admin/uploads/pdf/0Final%20hostel%20Manual.pdf">Time Table 2022</a></li>
+            <li><a href="http://www.cuh.ac.in/admin/uploads/pdf/0Final%20hostel%20Manual.pdf">New Administration</a></li>
+          </ul>
+        </marquee>
+        </div>
+      </div>
+      <div id="carouselExampleInterval" class="carousel slide carousel-fade col-md-6 col-lg-8 col-12" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="2500">
+            <img src="https://images.unsplash.com/photo-1556543365-e08680c86612?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8c2Nob29sJTIwY2FudGVlbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="..." height="600vh">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Complete Protective Measures</h5>
+              <p>Complete Covid Measures Followed</p>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2500">
+            <img src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHNjaG9vbCUyMGNhbnRlZW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="..." height="600vh">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>BEST QUALITY FOOD</h5>
+              <p>Food Quality is the Best</p>
+            </div>
+          </div>
+          <div class="carousel-item" data-bs-interval="2500">
+            <img src="https://images.unsplash.com/photo-1560341208-305f47d5e901?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2Nob29sJTIwY2FudGVlbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="..." height="600vh">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>BEST PRICE</h5>
+              <p>Food Available In Minimum Cost</p>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      <div class="col-lg-2 col-md-3 col-sm-6 col-12 seca" >
+        <div class="home_head"><center> Announcements</center></div>
+        <div class="links_head">
+          <marquee direction="up" height="150px" scrollamount="5" onmouseover="this.stop();" onmouseout="this.start();">
+          <ul>
+            <li><a href="">Fees Structure 2022</a></li>
+            <li><a href="">Time Table 2022</a></li>
+            <li><a href="">New Administration</a></li>
+          </ul>
+        </marquee>
+        </div>
+      </div>
     </div>
-    <div class="carousel-item" data-bs-interval="2500">
-      <img src="https://images.unsplash.com/photo-1485182708500-e8f1f318ba72?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHNjaG9vbCUyMGNhbnRlZW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="..." height="600vh">
-    </div>
-    <div class="carousel-item" data-bs-interval="2500">
-      <img src="https://images.unsplash.com/photo-1560341208-305f47d5e901?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2Nob29sJTIwY2FudGVlbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" class="d-block w-100" alt="..." height="600vh">
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
-<%- include('footer') %>
+  <%- include('footer') %>
 </body>
 </html>

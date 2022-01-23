@@ -3,10 +3,10 @@ const mongoose=require("mongoose")
 const path=require("path")
 const methodOverride=require('method-override')
 const morgan=require("morgan")
-const Joi=require('joi')
 const app=express()
 const register=require('./models/register');
 const AppError=require('./apperror')
+const {dashboardSchema,dashboardSignSchema}=require('./validations')
 mongoose.connect('mongodb://localhost:27017/MessManagement',)
 .then(()=>{
         console.log("Connected to Mongo DB")
@@ -15,6 +15,35 @@ mongoose.connect('mongodb://localhost:27017/MessManagement',)
     console.log("Error Found")
     console.log(err)
 })
+
+
+
+
+const validateDetails = (req,res,next)=>{
+    const result=dashboardSchema.validate(req.body);
+    if(result.error)
+    {
+        const msg=result.error.details.map(el=>el.message).join(',')
+        throw new AppError(msg,400)
+    }
+    else
+    {
+        next()
+    }
+}
+
+const validateSignDetails = (req,res,next)=>{
+    const result=dashboardSignSchema.validate(req.body);
+    if(result.error)
+    {
+        const msg=result.error.details.map(el=>el.message).join(',')
+        throw new AppError(msg,400)
+    }
+    else
+    {
+        next()
+    }
+}
 
 
 app.use(express.urlencoded({extended:true}));
@@ -78,7 +107,7 @@ app.get('/register',(req,res)=>{
     res.render('signup.ejs',{login})
 })
 app.get('/messdetails',(req,res)=>{
-    res.render('messdetails.ejs',{login,details,id})
+    res.render('messdetails.ejs',{login,id})
 })
 
 app.get('/logout',(req,res)=>{
@@ -122,8 +151,9 @@ app.get('/dashboard/:id/edit',wrapAsync(async (req,res)=>{
 
 
 
-app.post('/user', wrapAsync(async (req,res)=>{
+app.post('/user',validateDetails, wrapAsync(async (req,res)=>{
     details= await register.find(req.body)
+
     a=false;
     if(details.length===0)
     {
@@ -141,14 +171,7 @@ app.post('/user', wrapAsync(async (req,res)=>{
 
 
 
-app.post('/dashboard', wrapAsync(async (req,res)=>{
-
-    const dashboardSchema=Joi.object({
-        name:Joi.string().required(),
-        father_name:Joi.string().required()
-    }).required()
-
-    const result=dashboardSchema.validate(req.body);
+app.post('/dashboard',validateSignDetails, wrapAsync(async (req,res)=>{
 
     details= await register.find({rollNo:req.body.rollNo,department:req.body.department,name:req.body.name,email:req.body.email})
     a=false;

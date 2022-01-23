@@ -207,3 +207,61 @@ input,select,option
     margin:0px 1px 0px 0px;
     padding:0px; 
 }
+
+.home_head{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    font-size:1.1em;
+    background-color:blue;
+    border-radius:5px;
+    margin:10px 2px;
+    padding:0px;
+    border:2px solid grey;
+}
+
+.seca{
+    background-color: #E2DEDE;
+    border:2px solid grey;
+}
+
+.carousel{
+    padding:0px;
+    border:1px solid grey;
+    box-shadow: 0 0 20px grey;
+}
+
+.links_head li{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-width:1px 0px 0px 0px;
+    border-color:darkred;
+    border-style:dashed;
+    padding:10px;
+    padding-bottom:2px;
+    margin:20px 0px;
+    position:relative;
+    right:10%;
+}
+
+@media screen and (max-width:767px)
+{
+    .carousel{
+        position:absolute;
+        color:white;
+        
+    }
+    .seca{
+        position:relative;
+        top:50vh;
+        height: 280px;
+        border-radius:10px;
+    }
+    .carousel img{
+        height: 50vh;
+    }
+}
