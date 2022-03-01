@@ -10,14 +10,15 @@ mongoose.connect('mongodb://localhost:27017/MessManagement')
 })
 
 const P = new Product ({
-    name:'Ritika Sharma',
-    father_name:"Pawan Kumar Sharma",
-    email:'ritikasharma3642@gmail.com',
-    dateOfbirth:Date.now(),
-    rollNo:1,
-    mobileNO:856988878,
+    name:'rsjAAAA',
+    father_name:"safAA",
+    email:'rshr36AAA42@gmail.com',
+    dateOfbirth:new Date('2020-12-02'),
+    rollNo:1011,
+    mobileNO:8243464343,
     department:'B.TECH',
-    designation:'ADMIN'
+    date_start:new Date('2021-10-04'),
+    designation:'STUDENT'
 })
 
 P.save().then((a)=>{

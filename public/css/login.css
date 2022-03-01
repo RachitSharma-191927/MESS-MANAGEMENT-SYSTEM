@@ -1,7 +1,7 @@
 .login{
     display:flex;
     justify-content: center;
-    background-image: url('loginpagebackground.jpg'); /* For browsers that do not support gradients */
+    background-image: url('/images/loginpagebackground.jpg'); /* For browsers that do not support gradients */
     /* background-image: linear-gradient(to bottom right,#2193b0 , #6dd5ed);  */
     background-size:100% 100%;
     background-repeat: no-repeat;

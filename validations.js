@@ -14,6 +14,6 @@ module.exports.dashboardSignSchema=Joi.object({
     rollNo:Joi.number().required().min(0),
     mobileNo:Joi.number().required(),
     department:Joi.string().required(),
-    designation:Joi.string().required()
+    designation:Joi.string().required(),
 }).required()
 

@@ -8,21 +8,21 @@
     <link rel = "icon" href ="http://www.cuh.ac.in/images/logo.png"  type = "image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/signup.css">
+    <link rel="stylesheet" href="/css/signup.css">
 </head>
 <body>
    <%-include('navbar.ejs')%>
    <div class='formStyle'>
     <div class="lful required="true"l">
         <div class="imgs">
-            <img src="/loginimage.png" alt="" style="border-radius:50% 50%;" id="log_img" >
+            <img src="images/loginimage.png" alt="" style="border-radius:50% 50%;" id="log_img" >
         </div>
-        <% if(a===true){ %>
+            <% if((failures) && (failures.length)) { %>
             <div class="alert alert-danger error" role="alert">
-                <center> Your account is already registered! </center>
+                <center> <%=failures%> </center>     
               </div>
-        <% } %> 
-    <form action="/dashboard" method="post" class="forms" autocomplete="off">
+            <% } %>
+    <form action="/dashboard" method="post" class="forms" autocomplete="off" enctype="multipart/form-data">
         <div class="inputs">
             <div class="inner">
                 <div class="labels">
@@ -81,13 +81,19 @@
             </div>
         </div>
     </div>
+
+            <div class="imaaag">
+                <label for="images" class="labelss">Images </label>
+                <input type="file" id="images" name="images" required="true">
+            </div>
+            
+    
     <div class="buttons">
     <button id="submit">Submit</button>
     </div>
     </form>
-
-    </div>
-    </div>
+</div>
+</div>
     <%- include('footer') %>
 </body>
 </html>

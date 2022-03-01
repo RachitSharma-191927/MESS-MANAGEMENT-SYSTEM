@@ -1,8 +1,9 @@
 
+
 .formStyle{
     color:White;
     border:2px solid black;
-    background-image: url('pexels-pixabay-326279.jpg');
+    background-image: url('/images/pexels-pixabay-326279.jpg');
     background-size: 100%;
     padding:10px 0px;
     /* background-image:linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("https://i.imgur.com/xnh5x47.jpg"); */
@@ -106,7 +107,7 @@ input,select,option
     justify-content: flex-start;
 }
 
-.error{
+.errorss{
     display:flex;
     height:80vh;
     width:100%;
@@ -115,7 +116,7 @@ input,select,option
     color:black;
     background-color:cornflowerblue;
     margin:0px;
-    font-size:100px;
+    font-size:80px;
     font-weight: 900;
 }
 
@@ -179,6 +180,10 @@ input,select,option
     }
 }
 
+#admins{
+    float:right;
+}
+
 @media screen and (max-width:550px)
 {
     .labels{
@@ -200,6 +205,10 @@ input,select,option
         margin-top:20px;
         width:30%;
     }
+    #admins{
+        float:none;
+    }
+
 }
 
 .dash{
@@ -247,7 +256,9 @@ input,select,option
     position:relative;
     right:10%;
 }
-
+#sSearch{
+    margin-left:5%;
+}
 @media screen and (max-width:767px)
 {
     .carousel{
@@ -264,4 +275,25 @@ input,select,option
     .carousel img{
         height: 50vh;
     }
+    #sSearch{
+        margin-left:0px;
+    }
 }
+
+.imaaag{
+    font-size: large;
+    font-weight: bold;
+    position:relative;
+    left:8%;
+}
+.imaaag input{
+    border:none;
+    position:relative;
+    left:17%;
+}
+
+#submi button{
+    position:relative;
+    top:45px;
+}
+

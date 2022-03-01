@@ -3,7 +3,7 @@
         <div class="col-12 col-sm-6">
           <div class="img_style">
           <img src="http://www.cuh.ac.in/images/logo.png" alt="image broken" width="70%" height="120" class=" dis_image1">
-          <img src="/download.jpg" alt="" width="180px" height="120" class="dis_image2">
+          <img src="/images/download.jpg" alt="" width="180px" height="120" class="dis_image2">
           </div>
         </div>
         <div class="col-12 col-sm-6 align-self-center nav_name" >
@@ -27,15 +27,15 @@
         </ul>
         <form class="d-flex">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <% if(login===true) { %> 
+                <% if(id) { %> 
                   <li class="nav-item">
-                    <a class="nav-link active" href="/dashboard/<%=id%>">Your Profile</a>
+                    <a class="nav-link active" href="/dashboard/details">Your Profile</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link active" href="/logout">LOGOUT</a>
                   </li>
                  <% } %>
-                 <% if(login===false){ %>   
+                 <% if(!id){ %>   
                 <li class="nav-item">
                     <a class="nav-link active" href="/login">LOGIN</a>
                   </li>

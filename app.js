@@ -1,12 +1,26 @@
+if(process.env.NODE_ENV !== "production")
+{
+    require('dotenv').config();
+}
+
 const express=require("express")
 const mongoose=require("mongoose")
 const path=require("path")
 const methodOverride=require('method-override')
 const morgan=require("morgan")
+const flash=require('connect-flash')
 const app=express()
+const session=require("express-session")
 const register=require('./models/register');
 const AppError=require('./apperror')
+const requireLogin=require('./middleware')
 const {dashboardSchema,dashboardSignSchema}=require('./validations')
+const {storage}=require("./cloudinary")
+const multer=require('multer')
+const upload=multer({storage})
+
+
+
 mongoose.connect('mongodb://localhost:27017/MessManagement',)
 .then(()=>{
         console.log("Connected to Mongo DB")
@@ -15,6 +29,28 @@ mongoose.connect('mongodb://localhost:27017/MessManagement',)
     console.log("Error Found")
     console.log(err)
 })
+
+app.use(flash());
+
+app.use(session({
+    secret:"This is a good Secret",
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        httpOnly:true,
+        expires:Date.now() + (1000*60*60*24*2),
+        maxAge:(1000*60*60*24*2)
+
+    }
+}))
+
+app.use((req,res,next)=>{
+    res.locals.message=req.flash('success')
+    res.locals.failure=req.flash('failure')
+    res.locals.failures=req.flash('failures')
+    next()    
+})
+
 
 
 
@@ -46,6 +82,22 @@ const validateSignDetails = (req,res,next)=>{
 }
 
 
+
+const adminrequire = async (req,res,next)=>{
+    const id = req.session.user_id;
+    const details = await register.findById(id);
+    if(details.designation!=="ADMIN")
+    {
+        req.flash('failure',"You are not Authorized to do that")
+        return res.redirect("/dashboard/details")
+    }
+    else{
+        next()
+    }
+    
+}
+
+
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(methodOverride('_method'))
@@ -68,15 +120,10 @@ app.set('views',path.join(__dirname,'/views'))
 
 
 
-var details;
-var rollNo=0;
-var id;
-var login=false;
 
-
-var totalFees = async (rollNo)=>{
-    var details= await register.find({rollNo:rollNo})
-    Days=Math.floor((Date.now()-details[0].date_start.getTime())/(1000*24*3600))
+var totalFees = async (id)=>{
+    const details= await register.findById(id)
+    Days=Math.floor((Date.now()-details.date_start.getTime())/(1000*24*3600))
     perDayFees=120;
     fees=perDayFees*Days
     return fees
@@ -93,129 +140,175 @@ function wrapAsync(fn){
 
 
 app.get('/',(req,res)=>{
-    res.render('index.ejs',{login,details,id})
-
+    const id = req.session.user_id;
+    return res.render('index.ejs',{id})
 })
 
 app.get('/login', (req,res)=>{
-    a=false;
-    res.render('login.ejs',{a,login})
+    const id = req.session.user_id;
+    res.render('login.ejs',{id})
+    
 })
 
 app.get('/register',(req,res)=>{
-    a=false;
-    res.render('signup.ejs',{login})
+    const id = req.session.user_id;
+    res.render('signup.ejs',{id})
 })
 app.get('/messdetails',(req,res)=>{
-    res.render('messdetails.ejs',{login,id})
+    const id = req.session.user_id;
+    res.render('messdetails.ejs',{id})
 })
 
-app.get('/logout',(req,res)=>{
-    login=false
+app.get('/logout',requireLogin,(req,res)=>{
+    req.session.user_id=null;
     res.redirect('/')
 })
-app.get('/dashboard/:id', wrapAsync(async (req,res,next)=>{
-    var {id} =req.params
-    console.log(id);
-    var details=await register.findById(req.params.id)
-    .catch((err)=>{
-        logout=false;
-        return next(new AppError("Wrong User Id",404))
-    })
+
+
+
+app.get('/dashboard/details',requireLogin, wrapAsync(async (req,res,next)=>{
+    const id = req.session.user_id;
+    const details = await register.findById(id)
     if(details.designation=="ADMIN")
     {
-        login=true;
-        var details;
-        details=await register.find({designation:{$ne:'ADMIN'}})
-        res.render('admin.ejs',{details,login,id})
+        const alldetails=await register.find({designation:{$ne:'ADMIN'}})
+        const fees=[]
+        for( let data of alldetails)
+        {
+            fees.push(await totalFees(data.id))
+        }
+        res.render('admin.ejs',{alldetails,id,fees})
     }
     else
     {
-    login=true;
-    id=req.params.id;
-    fees= await totalFees(details.rollNo)
-    console.log(fees);
-    res.render('dashboard.ejs',{details,login,fees,id})
+    fees= await totalFees(id)
+    console.log("The user id from session is",req.session.user_id)
+    res.render('dashboard.ejs',{details,fees,id})
     }
 }))
 
-app.get('/dashboard/:id/edit',wrapAsync(async (req,res)=>{
-    var details = await register.findById(req.params.id)
-    login=true;
-    id=req.params.id;
-    res.render('edit.ejs',{details,login,id})
 
+
+app.get('/dashboard/edit',requireLogin,wrapAsync(async (req,res)=>{
+    const details = await register.findById(req.session.user_id)
+    id=req.session.user_id;
+    res.render('edit.ejs',{details,id})
 }))
 
+app.get('/studentsearch',requireLogin,adminrequire,(req,res)=>{
+    const id = req.session.user_id;
+    res.render('student_search.ejs',{id})
+})
 
 
-
-
-app.post('/user',validateDetails, wrapAsync(async (req,res)=>{
-    details= await register.find(req.body)
-
-    a=false;
+app.post('/dashboard/login',validateDetails, wrapAsync(async (req,res)=>{
+    const details= await register.find(req.body) 
     if(details.length===0)
     {
-        a=true;
-        res.render("login.ejs",{a,login})
+        req.flash('failure',"You have entered wrong details")
+        res.redirect('/login')
     }
     else{
-    login=true;
-    rollNo=req.body.rollNo;
-    id=details[0]._id
-    res.redirect(`/dashboard/${id}`)
+   
+    req.session.user_id=details[0]._id;
+    res.redirect(`/dashboard/details`)
     }
 }))
 
 
 
+app.post('/dashboard',upload.single('images'),validateSignDetails, wrapAsync(async (req,res)=>{
 
-app.post('/dashboard',validateSignDetails, wrapAsync(async (req,res)=>{
-
-    details= await register.find({rollNo:req.body.rollNo,department:req.body.department,name:req.body.name,email:req.body.email})
-    a=false;
+    const details= await register.find({name:req.body.name,email:req.body.email})
+    
     if(details.length!==0)
     {
-        a=true;
-        login=false;
-        res.render("signup.ejs",{a,login})
+        req.flash('failures','Your Account is Already Registered')
+        res.redirect('/register')
     }
     else
     {
         product=new register(req.body)
+        product.images={
+            url:req.file.path,
+            filename:req.file.filename
+        }
         await product.save().then((v)=>{
         console.log(v);
         })
-        details= await register.find({rollNo:req.body.rollNo})
-        var rollNo=req.body.rollNo;
-        login=true
-        id=details[0]._id
-        res.redirect(`/dashboard/${id}`);
+        const detailss= await register.find(req.body)
+        req.session.user_id=detailss[0]._id;
+        req.flash('success','Welcome to Your New Account')
+        res.redirect(`/dashboard/details`);
     }
 }))
 
 
+app.post("/student_search",upload.single(),requireLogin,adminrequire,wrapAsync(async(req,res)=>{
 
-
-
-
-app.put('/dashboard/:id',wrapAsync(async (req,res)=>{
-    const {id}=req.params;
-    const details = await register.findByIdAndUpdate(id,{...req.body},{new:true})
-    res.redirect(`/dashboard/${details.id}`);
+    const search =req.body
+    const detail= await register.find(search);
+    if(detail.length==0)
+    {
+        var Fees=0;
+    }
+    else
+    {
+     Fees = await totalFees(detail[0]._id)
+    } 
+    const details ={
+        detail:detail,
+        Fees:Fees
+    }
+    res.send(details);
 }))
 
-app.delete('/dashboard/:id',wrapAsync(async (req,res)=>{
+
+app.put('/dashboard/update',requireLogin,wrapAsync(async (req,res)=>{
+    const id=req.session.user_id;
+    await register.findByIdAndUpdate(id,{...req.body},{new:true})
+    req.flash('success',"Details Updation Successfull")
+    res.redirect(`/dashboard/details`);
+}))
+
+
+app.delete('/dashboard/:id',requireLogin,adminrequire,wrapAsync(async (req,res)=>{
     const {id}=req.params;
     await register.findByIdAndDelete(id);
-    res.redirect('/');
+    res.redirect('/dashboard/details');
 }))
+
+app.put('/dashboard/fees/:id',requireLogin,adminrequire,wrapAsync(async (req,res)=>{
+    const{id}=req.params;
+    await register.findByIdAndUpdate(id,{date_start:Date.now()},{new:true})
+    .catch((e)=>{
+        res.send("Invalid Id")
+        return
+    })
+    if(id===0)
+    {
+      res.send('Invalid Id')  
+      return 
+    }
+    res.send('Done')
+}))
+
+app.put('/dashboard/fees/admin/:id',requireLogin,adminrequire,wrapAsync(async (req,res)=>{
+    const{id}=req.params;
+    await register.findByIdAndUpdate(id,{date_start:Date.now()},{new:true})
+    .catch((e)=>{
+        res.send("Invalid Id")
+        return
+    })
+    res.redirect('/dashboard/details')
+}))
+
 
 
 //if no route is found
 app.use((req,res)=>{
-    res.status(404).render('error.ejs',{details,login,id});
+    const id=req.session.user_id;
+    res.status(404).render('error.ejs',{id});
 })
 
 

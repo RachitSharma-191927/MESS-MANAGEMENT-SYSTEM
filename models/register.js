@@ -1,4 +1,7 @@
+const { string } = require("joi");
 const mongoose=require("mongoose")
+
+
 
 const registerSchema = new mongoose.Schema ({
     name:{
@@ -49,9 +52,12 @@ const registerSchema = new mongoose.Schema ({
     date_start:{
         type:Date,
         default:Date.now()
+    },
+    images:{
+        url:String,
+        filename:String
     }
 })
 
 const Register=mongoose.model('Register',registerSchema);
-
 module.exports = Register;

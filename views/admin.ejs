@@ -8,12 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap" rel="stylesheet">
     <title>Admin Page</title>
     <link rel = "icon" href ="http://www.cuh.ac.in/images/logo.png"  type = "image/x-icon">
-    <link rel="stylesheet" href="/admin.css">
-    <link rel="stylesheet" href="/signup.css">
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="/css/signup.css">
 </head>
 <body>
     <%-include('navbar.ejs')%>
-    <h1 style="color:crimson;font-weight:bold"> <center> Details of All Students </center></h1>
+    <h1 style="color:crimson;font-weight:bold"> <center> Details of All Students
+        <button style="font-size:large;margin-top:12px;border-radius: 20px;" id="admins"> <a href="/studentsearch" style="text-decoration: none;">Student Search</a> </button>
+    </center>
+    </h1>
     <div class="table-responsive">
         <table class="table table-dark table-striped">
             <tr>
@@ -21,17 +24,27 @@
                 <th>Father Name</th>
                 <th>Roll No</th>
                 <th>Department</th>
+                <th>Fees</th>
                 <th>Delete Account</th>
+                <th>Fees Pay</th>
             </tr>
-            <% for (let detail of details) { %>
+            <% let i=0 %>
+            <% for (let detail of alldetails) { %>
             <tr>
                 <td><%= detail.name %></td>
                 <td><%= detail.father_name  %> </td>
                 <td><%= detail.rollNo  %> </td>
                 <td><%= detail.department%> </td>
+                <td><%= fees[i] %></td>
+                <% i=i+1 %>
                 <td>
                     <form action="/dashboard/<%=detail.id%>?_method=DELETE" method="post" >
                     <button>Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="/dashboard/fees/admin/<%=detail.id%>?_method=PUT" method="post">
+                    <button>Pay Fees</button>
                     </form>
                 </td>
             </tr>
